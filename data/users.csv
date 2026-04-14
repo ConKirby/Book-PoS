@@ -1,0 +1,4 @@
+id,username,pin,role,name
+u_001,staff,1234,staff,Sam Staff
+u_002,manager,9999,manager,Morgan Manager
+u_003,alex,1111,staff,Alex Clerk

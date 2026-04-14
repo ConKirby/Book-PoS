@@ -1,0 +1,7 @@
+id,transactionId,bookId,title,category,unitPrice,qty,voided
+tx_1776155168416_ljay27_0,tx_1776155168416_ljay27,bk_001,Pride and Prejudice,general,8.99,2,false
+tx_1776155168416_ljay27_1,tx_1776155168416_ljay27,bk_005,Lonely Planet Japan,travel,22.99,1,true
+tx_1776156974480_wrkpq6_0,tx_1776156974480_wrkpq6,bk_001,Pride and Prejudice,general,8.99,1,false
+tx_1776156993694_qkuvbg_0,tx_1776156993694_qkuvbg,bk_001,Pride and Prejudice,general,8.99,1,true
+tx_1776156993694_qkuvbg_1,tx_1776156993694_qkuvbg,bk_001,Pride and Prejudice,general,8.99,2,false
+tx_1776157021041_jzys5y_0,tx_1776157021041_jzys5y,bk_003,To Kill a Mockingbird,general,9.5,1,false

@@ -1,0 +1,26 @@
+id,isbn,title,author,category,price,stock,condition,year,firstEdition
+bk_001,9780141439518,Pride and Prejudice,Jane Austen,general,8.99,7,new,2003,false
+bk_002,9780747532699,Harry Potter and the Philosopher's Stone,J.K. Rowling,first-edition,4500,1,fine,1997,true
+bk_003,9780061120084,To Kill a Mockingbird,Harper Lee,general,9.5,7,new,2006,false
+bk_004,9780143039433,The Grapes of Wrath,John Steinbeck,first-edition,1200,1,very good,1939,true
+bk_005,9781784873509,Lonely Planet Japan,Lonely Planet,travel,22.99,5,new,2023,false
+bk_006,9781787017757,Rough Guide to Italy,Rough Guides,travel,19.99,4,new,2023,false
+bk_007,9780241425442,Lonely Planet Europe,Lonely Planet,travel,27.99,6,new,2023,false
+bk_008,9780544003415,The Lord of the Rings,J.R.R. Tolkien,collectable,75,2,good,1966,false
+bk_009,9780684801223,The Old Man and the Sea,Ernest Hemingway,first-edition,3200,1,very good,1952,true
+bk_010,9780141182704,The Great Gatsby,F. Scott Fitzgerald,collectable,120,3,good,1980,false
+bk_011,9780141439600,Emma,Jane Austen,general,7.99,10,new,2003,false
+bk_012,9780679783268,Crime and Punishment,Fyodor Dostoevsky,general,10.99,6,new,1993,false
+bk_013,9781784873912,Lonely Planet France,Lonely Planet,travel,24.99,7,new,2023,false
+bk_014,9780679720201,One Hundred Years of Solitude,Gabriel Garcia Marquez,collectable,45,2,very good,1998,false
+bk_015,9780060883287,The Catcher in the Rye,J.D. Salinger,first-edition,2800,1,good,1951,true
+bk_016,9780316769488,Franny and Zooey,J.D. Salinger,general,11.5,4,new,2001,false
+bk_017,9780141439570,Wuthering Heights,Emily Bronte,general,7.5,9,new,2003,false
+bk_018,9781787011571,Rough Guide to Spain,Rough Guides,travel,18.99,5,new,2023,false
+bk_019,9780140283334,On the Road,Jack Kerouac,collectable,55,3,good,1976,false
+bk_020,9780241372579,Brave New World,Aldous Huxley,first-edition,1800,1,fine,1932,true
+bk_021,9780141036144,1984,George Orwell,general,9.99,15,new,2008,false
+bk_022,9781784872618,Lonely Planet Thailand,Lonely Planet,travel,21.99,4,new,2023,false
+bk_023,9780547928227,The Hobbit,J.R.R. Tolkien,collectable,65,2,very good,1981,false
+bk_024,9780141182636,Tender is the Night,F. Scott Fitzgerald,first-edition,1500,1,good,1934,true
+bk_025,9781784875541,Lonely Planet New Zealand,Lonely Planet,travel,25.99,5,new,2023,false

@@ -164,39 +164,44 @@ export default function InventoryPage() {
   const isManager = user.role === 'manager';
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex items-center gap-4">
-          <h1 className="text-lg font-semibold">Bookshop PoS</h1>
-          <nav className="flex gap-1 bg-slate-800 rounded-md p-1 text-sm">
+    <div className="min-h-screen bg-stone-50">
+      <header className="bg-emerald-900 text-white px-6 py-3.5 flex items-center justify-between gap-4 flex-wrap shadow-md">
+        <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2.5">
+            <span className="text-xl">📚</span>
+            <h1 className="text-base font-semibold tracking-tight">Bookshop PoS</h1>
+          </div>
+          <nav className="flex gap-1 bg-emerald-950/60 rounded-lg p-1 text-sm">
             {isManager && (
-              <a href="/dashboard" className="px-3 py-1 rounded hover:bg-slate-700">
+              <a href="/dashboard" className="px-3 py-1.5 rounded-md transition-colors hover:bg-emerald-800/60">
                 Dashboard
               </a>
             )}
-            <a href="/inventory" className="px-3 py-1 rounded bg-slate-700 font-medium">
+            <a href="/inventory" className="px-3 py-1.5 rounded-md transition-colors bg-emerald-700 font-medium">
               Inventory
             </a>
-            <a href="/pos" className="px-3 py-1 rounded hover:bg-slate-700">
+            <a href="/pos" className="px-3 py-1.5 rounded-md transition-colors hover:bg-emerald-800/60">
               Till
             </a>
           </nav>
         </div>
         <div className="text-sm flex items-center gap-4">
-          <span>{user.name}</span>
-          <button onClick={logout} className="underline">
+          <span className="text-emerald-200">{user.name}</span>
+          <button onClick={logout} className="text-emerald-300 hover:text-white transition-colors underline underline-offset-2">
             Sign out
           </button>
         </div>
       </header>
-      <main className="p-4 max-w-6xl mx-auto">
+      <main className="p-5 max-w-6xl mx-auto">
         <div className="flex flex-wrap gap-2 mb-4 items-center">
           {CATEGORIES.map((c) => (
             <button
               key={c.key}
               onClick={() => setCategory(c.key)}
-              className={`px-3 py-1 rounded-full text-sm ${
-                category === c.key ? 'bg-slate-900 text-white' : 'bg-white border hover:bg-slate-50'
+              className={`px-3.5 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                category === c.key
+                  ? 'bg-emerald-700 text-white shadow-sm'
+                  : 'bg-white border border-stone-200 text-stone-600 hover:border-stone-300 hover:bg-stone-50'
               }`}
             >
               {c.label}
@@ -205,45 +210,45 @@ export default function InventoryPage() {
           {isManager && (
             <button
               onClick={() => setShowNewBook((v) => !v)}
-              className="ml-auto px-3 py-1 rounded-md text-sm bg-green-600 text-white hover:bg-green-700"
+              className="ml-auto px-3.5 py-1.5 rounded-lg text-sm font-medium bg-emerald-700 text-white hover:bg-emerald-800 transition-colors shadow-sm"
             >
               {showNewBook ? 'Cancel' : '+ New book'}
             </button>
           )}
         </div>
         {isManager && showNewBook && (
-          <div className="bg-white rounded-lg shadow p-4 mb-4 grid md:grid-cols-3 gap-3">
+          <div className="bg-white rounded-2xl shadow-sm ring-1 ring-stone-100 p-5 mb-4 grid md:grid-cols-3 gap-3">
             <label className="text-sm">
-              <span className="block mb-1 font-medium">ISBN</span>
+              <span className="block mb-1.5 font-medium text-stone-700">ISBN</span>
               <input
                 value={newBook.isbn}
                 onChange={(e) => setNewBook({ ...newBook, isbn: e.target.value })}
-                className="w-full border rounded px-2 py-1 font-mono"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 font-mono focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
                 placeholder="978..."
               />
             </label>
             <label className="text-sm md:col-span-2">
-              <span className="block mb-1 font-medium">Title</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Title</span>
               <input
                 value={newBook.title}
                 onChange={(e) => setNewBook({ ...newBook, title: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               />
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Author</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Author</span>
               <input
                 value={newBook.author}
                 onChange={(e) => setNewBook({ ...newBook, author: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               />
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Category</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Category</span>
               <select
                 value={newBook.category}
                 onChange={(e) => setNewBook({ ...newBook, category: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               >
                 <option value="general">General</option>
                 <option value="travel">Travel</option>
@@ -252,11 +257,11 @@ export default function InventoryPage() {
               </select>
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Condition</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Condition</span>
               <select
                 value={newBook.condition}
                 onChange={(e) => setNewBook({ ...newBook, condition: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               >
                 <option value="new">New</option>
                 <option value="fine">Fine</option>
@@ -266,33 +271,33 @@ export default function InventoryPage() {
               </select>
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Price (€)</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Price (€)</span>
               <input
                 type="number"
                 step="0.01"
                 min={0}
                 value={newBook.price}
                 onChange={(e) => setNewBook({ ...newBook, price: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               />
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Stock</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Stock</span>
               <input
                 type="number"
                 min={0}
                 value={newBook.stock}
                 onChange={(e) => setNewBook({ ...newBook, stock: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               />
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Year</span>
+              <span className="block mb-1.5 font-medium text-stone-700">Year</span>
               <input
                 type="number"
                 value={newBook.year}
                 onChange={(e) => setNewBook({ ...newBook, year: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
               />
             </label>
             <label className="text-sm flex items-center gap-2 mt-5">
@@ -300,14 +305,15 @@ export default function InventoryPage() {
                 type="checkbox"
                 checked={newBook.firstEdition}
                 onChange={(e) => setNewBook({ ...newBook, firstEdition: e.target.checked })}
+                className="accent-emerald-700"
               />
-              <span>First edition</span>
+              <span className="text-stone-700">First edition</span>
             </label>
             <div className="md:col-span-3 flex justify-end">
               <button
                 onClick={createNewBook}
                 disabled={creating}
-                className="px-4 py-2 bg-slate-900 text-white rounded disabled:bg-slate-400"
+                className="px-5 py-2 bg-emerald-700 text-white rounded-xl font-semibold hover:bg-emerald-800 transition-colors shadow-sm disabled:bg-stone-200 disabled:text-stone-400"
               >
                 {creating ? 'Adding…' : 'Add book'}
               </button>
@@ -318,45 +324,49 @@ export default function InventoryPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search by title, author, or ISBN"
-          className="w-full border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-slate-400"
+          className="w-full border border-stone-200 rounded-xl px-4 py-2.5 mb-4 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm"
         />
-        {message && <p className="text-sm text-amber-700 mb-2">{message}</p>}
-        <div className="bg-white rounded-lg shadow overflow-x-auto">
+        {message && (
+          <div className="bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-2.5 rounded-lg mb-3">
+            {message}
+          </div>
+        )}
+        <div className="bg-white rounded-2xl shadow-sm ring-1 ring-stone-100 overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-slate-50 text-left">
+            <thead className="bg-stone-50 text-left border-b border-stone-100">
               <tr>
-                <th className="px-3 py-2">Title</th>
-                <th className="px-3 py-2">Author</th>
-                <th className="px-3 py-2">ISBN</th>
-                <th className="px-3 py-2">Category</th>
-                <th className="px-3 py-2">Condition</th>
-                <th className="px-3 py-2 text-right">Year</th>
-                <th className="px-3 py-2 text-right">Price</th>
-                <th className="px-3 py-2 text-right">Stock</th>
+                <th className="px-4 py-3 font-medium text-stone-500">Title</th>
+                <th className="px-4 py-3 font-medium text-stone-500">Author</th>
+                <th className="px-4 py-3 font-medium text-stone-500">ISBN</th>
+                <th className="px-4 py-3 font-medium text-stone-500">Category</th>
+                <th className="px-4 py-3 font-medium text-stone-500">Condition</th>
+                <th className="px-4 py-3 font-medium text-stone-500 text-right">Year</th>
+                <th className="px-4 py-3 font-medium text-stone-500 text-right">Price</th>
+                <th className="px-4 py-3 font-medium text-stone-500 text-right">Stock</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="divide-y divide-stone-100">
               {filtered.map((b) => {
                 const draft = stockDrafts[b.id];
                 const draftNum = draft === undefined ? b.stock : parseInt(draft, 10);
                 const dirty = draft !== undefined && draftNum !== b.stock;
                 return (
-                  <tr key={b.id} className="border-t">
-                    <td className="px-3 py-2">
+                  <tr key={b.id} className="hover:bg-stone-50/50 transition-colors">
+                    <td className="px-4 py-3 text-stone-900">
                       {b.title}
                       {b.firstEdition && (
-                        <span className="ml-2 text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded">
+                        <span className="ml-2 text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">
                           1st ed.
                         </span>
                       )}
                     </td>
-                    <td className="px-3 py-2">{b.author}</td>
-                    <td className="px-3 py-2 font-mono text-xs">{b.isbn}</td>
-                    <td className="px-3 py-2 capitalize">{b.category.replace('-', ' ')}</td>
-                    <td className="px-3 py-2 capitalize text-sm text-slate-600">{b.condition}</td>
-                    <td className="px-3 py-2 text-right text-slate-600">{b.year || '—'}</td>
-                    <td className="px-3 py-2 text-right">€{b.price.toFixed(2)}</td>
-                    <td className="px-3 py-2 text-right">
+                    <td className="px-4 py-3 text-stone-700">{b.author}</td>
+                    <td className="px-4 py-3 font-mono text-xs text-stone-500">{b.isbn}</td>
+                    <td className="px-4 py-3 capitalize text-stone-600">{b.category.replace('-', ' ')}</td>
+                    <td className="px-4 py-3 capitalize text-stone-500">{b.condition}</td>
+                    <td className="px-4 py-3 text-right text-stone-400">{b.year || '—'}</td>
+                    <td className="px-4 py-3 text-right font-medium text-stone-900">€{b.price.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right">
                       {isManager ? (
                         <div className="flex items-center justify-end gap-2">
                           <input
@@ -367,21 +377,21 @@ export default function InventoryPage() {
                             onChange={(e) =>
                               setStockDrafts((prev) => ({ ...prev, [b.id]: e.target.value }))
                             }
-                            className={`w-20 border rounded px-2 py-1 text-right ${b.stock <= 2 ? 'border-amber-400 bg-amber-50' : ''}`}
+                            className={`w-20 border rounded-lg px-2 py-1 text-right focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm ${b.stock <= 2 ? 'border-amber-300 bg-amber-50' : 'border-stone-200'}`}
                           />
                           {dirty && (
                             <button
                               type="button"
                               onClick={() => saveStock(b.id)}
                               disabled={savingId === b.id}
-                              className="text-xs px-2 py-1 bg-slate-900 text-white rounded disabled:bg-slate-400"
+                              className="text-xs px-2.5 py-1 bg-emerald-700 text-white rounded-lg hover:bg-emerald-800 transition-colors disabled:bg-stone-200 disabled:text-stone-400 shadow-sm"
                             >
-                              {savingId === b.id ? '...' : 'Save'}
+                              {savingId === b.id ? '…' : 'Save'}
                             </button>
                           )}
                         </div>
                       ) : (
-                        <span className={b.stock <= 2 ? 'text-amber-600 font-medium' : ''}>{b.stock}</span>
+                        <span className={b.stock <= 2 ? 'text-amber-600 font-semibold' : 'text-stone-900'}>{b.stock}</span>
                       )}
                     </td>
                   </tr>
@@ -390,7 +400,7 @@ export default function InventoryPage() {
             </tbody>
           </table>
           {filtered.length === 0 && (
-            <p className="p-4 text-center text-slate-400 text-sm">No books found</p>
+            <p className="p-8 text-center text-stone-400 text-sm">No books found</p>
           )}
         </div>
       </main>

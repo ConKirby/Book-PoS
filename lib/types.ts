@@ -30,6 +30,11 @@ export interface Transaction {
   paymentMethod: 'card' | 'cash' | string;
   itemCount: number;
   voidedItemCount: number;
+  type: 'sale' | 'refund' | string;
+  tendered: number;
+  change: number;
+  idempotencyKey: string;
+  refundOfId: string;
 }
 
 export interface TransactionItem {

@@ -10,7 +10,10 @@
       "Bash(curl -s -o /dev/null -w \"pos:%{http_code}\\\\ndashboard:%{http_code}\\\\ninventory:%{http_code}\\\\n\" http://localhost:3000/pos http://localhost:3000/dashboard http://localhost:3000/inventory -w \"\")",
       "Bash(curl -s -o /dev/null -w \"pos:%{http_code}\\\\n\" http://localhost:3000/pos)",
       "Bash(curl -s -o /dev/null -w \"dashboard:%{http_code}\\\\n\" http://localhost:3000/dashboard)",
-      "Bash(curl -s -o /dev/null -w \"inventory:%{http_code}\\\\n\" http://localhost:3000/inventory)"
+      "Bash(curl -s -o /dev/null -w \"inventory:%{http_code}\\\\n\" http://localhost:3000/inventory)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(npx next *)"
     ]
   }
 }

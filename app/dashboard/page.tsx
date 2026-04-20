@@ -67,20 +67,27 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-slate-100">
-      <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between">
-        <h1 className="text-lg font-semibold">Manager Dashboard</h1>
-        <nav className="text-sm flex items-center gap-4">
-          <a href="/inventory" className="underline">
-            Inventory
-          </a>
-          <a href="/pos" className="underline">
-            Till
-          </a>
+      <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-4">
+          <h1 className="text-lg font-semibold">Bookshop PoS</h1>
+          <nav className="flex gap-1 bg-slate-800 rounded-md p-1 text-sm">
+            <a href="/dashboard" className="px-3 py-1 rounded bg-slate-700 font-medium">
+              Dashboard
+            </a>
+            <a href="/inventory" className="px-3 py-1 rounded hover:bg-slate-700">
+              Inventory
+            </a>
+            <a href="/pos" className="px-3 py-1 rounded hover:bg-slate-700">
+              Till
+            </a>
+          </nav>
+        </div>
+        <div className="text-sm flex items-center gap-4">
           <span>{user.name}</span>
           <button onClick={logout} className="underline">
             Sign out
           </button>
-        </nav>
+        </div>
       </header>
       <main className="p-4 max-w-6xl mx-auto">
         <p className="text-xs text-slate-500 mb-4">Live · auto-refresh every 3s</p>

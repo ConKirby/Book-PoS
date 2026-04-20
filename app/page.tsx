@@ -44,42 +44,74 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
-      <form onSubmit={handleLogin} className="bg-white rounded-lg shadow-lg p-8 w-full max-w-sm">
-        <h1 className="text-2xl font-bold mb-1">Bookshop PoS</h1>
-        <p className="text-slate-500 mb-6 text-sm">Sign in to continue</p>
-        <label className="block mb-3">
-          <span className="text-sm font-medium">Username</span>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400"
-            autoFocus
-            required
-          />
-        </label>
-        <label className="block mb-4">
-          <span className="text-sm font-medium">PIN</span>
-          <input
-            type="password"
-            value={pin}
-            onChange={(e) => setPin(e.target.value)}
-            className="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-400"
-            required
-          />
-        </label>
-        {error && <p className="text-red-600 text-sm mb-3">{error}</p>}
-        <button
-          disabled={loading}
-          className="w-full bg-slate-900 text-white py-2 rounded font-medium hover:bg-slate-800 disabled:opacity-60"
-        >
-          {loading ? 'Signing in...' : 'Sign in'}
-        </button>
-        <div className="text-xs text-slate-400 mt-4 space-y-1">
-          <p>Demo accounts:</p>
-          <p>staff / 1234 · alex / 1111 · manager / 9999</p>
+    <div className="min-h-screen flex bg-stone-50">
+      <div className="hidden md:flex md:w-1/2 bg-emerald-900 flex-col justify-between p-12 text-white">
+        <div className="text-2xl font-bold tracking-tight flex items-center gap-3">
+          <span className="text-3xl">📚</span>
+          Bookshop PoS
         </div>
-      </form>
+        <div>
+          <blockquote className="text-emerald-100 text-lg italic leading-relaxed">
+            &ldquo;A room without books is like a body without a soul.&rdquo;
+          </blockquote>
+          <p className="text-emerald-400 text-sm mt-2">— Marcus Tullius Cicero</p>
+        </div>
+        <p className="text-emerald-500 text-xs">Collectable & First Edition Booksellers</p>
+      </div>
+
+      <div className="flex-1 flex items-center justify-center p-8">
+        <div className="w-full max-w-sm">
+          <div className="md:hidden text-center mb-8">
+            <span className="text-4xl">📚</span>
+            <h1 className="text-2xl font-bold text-stone-900 mt-2 tracking-tight">Bookshop PoS</h1>
+          </div>
+
+          <h2 className="text-2xl font-bold text-stone-900 tracking-tight mb-1">Welcome back</h2>
+          <p className="text-stone-500 text-sm mb-8">Sign in with your username and PIN</p>
+
+          <form onSubmit={handleLogin} className="space-y-5">
+            <label className="block">
+              <span className="text-sm font-medium text-stone-700">Username</span>
+              <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="mt-1.5 w-full border border-stone-200 rounded-lg px-3.5 py-2.5 text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white shadow-sm"
+                autoFocus
+                required
+              />
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium text-stone-700">PIN</span>
+              <input
+                type="password"
+                value={pin}
+                onChange={(e) => setPin(e.target.value)}
+                className="mt-1.5 w-full border border-stone-200 rounded-lg px-3.5 py-2.5 text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-white shadow-sm"
+                required
+              />
+            </label>
+
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-2.5 rounded-lg">
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-emerald-700 text-white py-2.5 rounded-lg font-semibold hover:bg-emerald-800 disabled:opacity-60 transition-colors shadow-sm"
+            >
+              {loading ? 'Signing in…' : 'Sign in'}
+            </button>
+          </form>
+
+          <div className="mt-6 pt-6 border-t border-stone-100 text-xs text-stone-400 space-y-1">
+            <p className="font-medium text-stone-500">Demo accounts</p>
+            <p>staff / 1234 · alex / 1111 · manager / 9999</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

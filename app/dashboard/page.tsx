@@ -53,10 +53,14 @@ export default function DashboardPage() {
   }
 
   const today = new Date().toISOString().slice(0, 10);
+  const allSales = data.transactions.filter((t) => t.type === 'sale' && t.status !== 'voided');
+  const allRefunds = data.transactions.filter((t) => t.type === 'refund');
   const todayTx = data.transactions.filter((t) => t.timestamp.startsWith(today));
-  const todayRevenue = todayTx.reduce((s, t) => s + t.total, 0);
-  const todayItems = todayTx.reduce((s, t) => s + t.itemCount, 0);
-  const allRevenue = data.transactions.reduce((s, t) => s + t.total, 0);
+  const todaySales = todayTx.filter((t) => t.type === 'sale' && t.status !== 'voided');
+  const todayRevenue = todaySales.reduce((s, t) => s + t.total, 0);
+  const todayItems = todaySales.reduce((s, t) => s + t.itemCount, 0);
+  const allRevenue = allSales.reduce((s, t) => s + t.total, 0) - allRefunds.reduce((s, t) => s + t.total, 0);
+  const avgSale = todaySales.length > 0 ? todayRevenue / todaySales.length : 0;
 
   const activeItems = data.items.filter((i) => !i.voided);
   const byCategory: Record<string, number> = {};
@@ -92,10 +96,16 @@ export default function DashboardPage() {
       <main className="p-4 max-w-6xl mx-auto">
         <p className="text-xs text-slate-500 mb-4">Live · auto-refresh every 3s</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          <Card label="Today's revenue" value={`£${todayRevenue.toFixed(2)}`} />
-          <Card label="Today's sales" value={todayTx.length.toString()} />
+          <Card label="Today's revenue" value={`€${todayRevenue.toFixed(2)}`} />
+          <Card label="Today's sales" value={todaySales.length.toString()} />
           <Card label="Today's items sold" value={todayItems.toString()} />
-          <Card label="All-time revenue" value={`£${allRevenue.toFixed(2)}`} />
+          <Card label="All-time net revenue" value={`€${allRevenue.toFixed(2)}`} />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+          <Card label="Avg sale today" value={todaySales.length > 0 ? `€${avgSale.toFixed(2)}` : '—'} />
+          <Card label="Refunds today" value={todayTx.filter((t) => t.type === 'refund').length.toString()} />
+          <Card label="Voided today" value={todayTx.filter((t) => t.status === 'voided').length.toString()} />
+          <Card label="Total transactions" value={data.transactions.length.toString()} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
@@ -110,7 +120,7 @@ export default function DashboardPage() {
                   .map(([cat, rev]) => (
                     <li key={cat} className="flex justify-between py-1 text-sm">
                       <span className="capitalize">{cat.replace('-', ' ')}</span>
-                      <span className="font-medium">£{rev.toFixed(2)}</span>
+                      <span className="font-medium">€{rev.toFixed(2)}</span>
                     </li>
                   ))}
               </ul>
@@ -122,18 +132,32 @@ export default function DashboardPage() {
               <p className="text-slate-400 text-sm">No transactions yet</p>
             ) : (
               <ul className="divide-y text-sm">
-                {data.transactions.slice(0, 10).map((t) => (
-                  <li key={t.id} className="py-2 flex justify-between gap-2">
-                    <div className="min-w-0">
-                      <p className="font-medium">{new Date(t.timestamp).toLocaleTimeString()}</p>
-                      <p className="text-xs text-slate-500 truncate">
-                        {t.staffName} · {t.paymentMethod} · {t.itemCount} items
-                        {t.voidedItemCount > 0 ? ` · ${t.voidedItemCount} voided` : ''}
-                      </p>
-                    </div>
-                    <span className="font-semibold whitespace-nowrap">£{t.total.toFixed(2)}</span>
-                  </li>
-                ))}
+                {[...data.transactions].reverse().slice(0, 10).map((t) => {
+                  const isToday = t.timestamp.startsWith(today);
+                  const dateStr = isToday
+                    ? new Date(t.timestamp).toLocaleTimeString()
+                    : new Date(t.timestamp).toLocaleDateString();
+                  const isRefund = t.type === 'refund';
+                  const isVoided = t.status === 'voided';
+                  return (
+                    <li key={t.id} className="py-2 flex justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="font-medium flex items-center gap-2">
+                          {dateStr}
+                          {isRefund && <span className="text-xs bg-orange-100 text-orange-700 px-1.5 py-0.5 rounded">refund</span>}
+                          {isVoided && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded">voided</span>}
+                        </p>
+                        <p className="text-xs text-slate-500 truncate">
+                          {t.staffName} · {t.paymentMethod} · {t.itemCount} items
+                          {t.voidedItemCount > 0 ? ` · ${t.voidedItemCount} voided` : ''}
+                        </p>
+                      </div>
+                      <span className={`font-semibold whitespace-nowrap ${isRefund ? 'text-orange-600' : isVoided ? 'text-slate-400 line-through' : ''}`}>
+                        {isRefund ? '-' : ''}€{t.total.toFixed(2)}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             )}
           </section>

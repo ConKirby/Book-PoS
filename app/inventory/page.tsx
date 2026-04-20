@@ -266,7 +266,7 @@ export default function InventoryPage() {
               </select>
             </label>
             <label className="text-sm">
-              <span className="block mb-1 font-medium">Price (£)</span>
+              <span className="block mb-1 font-medium">Price (€)</span>
               <input
                 type="number"
                 step="0.01"
@@ -329,6 +329,8 @@ export default function InventoryPage() {
                 <th className="px-3 py-2">Author</th>
                 <th className="px-3 py-2">ISBN</th>
                 <th className="px-3 py-2">Category</th>
+                <th className="px-3 py-2">Condition</th>
+                <th className="px-3 py-2 text-right">Year</th>
                 <th className="px-3 py-2 text-right">Price</th>
                 <th className="px-3 py-2 text-right">Stock</th>
               </tr>
@@ -351,21 +353,25 @@ export default function InventoryPage() {
                     <td className="px-3 py-2">{b.author}</td>
                     <td className="px-3 py-2 font-mono text-xs">{b.isbn}</td>
                     <td className="px-3 py-2 capitalize">{b.category.replace('-', ' ')}</td>
-                    <td className="px-3 py-2 text-right">£{b.price.toFixed(2)}</td>
+                    <td className="px-3 py-2 capitalize text-sm text-slate-600">{b.condition}</td>
+                    <td className="px-3 py-2 text-right text-slate-600">{b.year || '—'}</td>
+                    <td className="px-3 py-2 text-right">€{b.price.toFixed(2)}</td>
                     <td className="px-3 py-2 text-right">
                       {isManager ? (
                         <div className="flex items-center justify-end gap-2">
                           <input
                             type="number"
                             min={0}
+                            aria-label="Stock quantity"
                             value={draft === undefined ? b.stock : draft}
                             onChange={(e) =>
                               setStockDrafts((prev) => ({ ...prev, [b.id]: e.target.value }))
                             }
-                            className="w-20 border rounded px-2 py-1 text-right"
+                            className={`w-20 border rounded px-2 py-1 text-right ${b.stock <= 2 ? 'border-amber-400 bg-amber-50' : ''}`}
                           />
                           {dirty && (
                             <button
+                              type="button"
                               onClick={() => saveStock(b.id)}
                               disabled={savingId === b.id}
                               className="text-xs px-2 py-1 bg-slate-900 text-white rounded disabled:bg-slate-400"
@@ -375,7 +381,7 @@ export default function InventoryPage() {
                           )}
                         </div>
                       ) : (
-                        b.stock
+                        <span className={b.stock <= 2 ? 'text-amber-600 font-medium' : ''}>{b.stock}</span>
                       )}
                     </td>
                   </tr>

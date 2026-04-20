@@ -1,6 +1,6 @@
 id,isbn,title,author,category,price,stock,condition,year,firstEdition
 bk_001,9780141439518,Pride and Prejudice,Jane Austen,general,8.99,5,new,2003,false
-bk_002,9780747532699,Harry Potter and the Philosopher's Stone,J.K. Rowling,first-edition,4500,1,fine,1997,true
+bk_002,9780747532699,Harry Potter and the Philosopher's Stone,J.K. Rowling,first-edition,4500,0,fine,1997,true
 bk_003,9780061120084,To Kill a Mockingbird,Harper Lee,general,9.5,7,new,2006,false
 bk_004,9780143039433,The Grapes of Wrath,John Steinbeck,first-edition,1200,1,very good,1939,true
 bk_005,9781784873509,Lonely Planet Japan,Lonely Planet,travel,22.99,5,new,2023,false

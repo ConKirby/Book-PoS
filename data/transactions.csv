@@ -1,6 +1,7 @@
-id,timestamp,staffId,staffName,subtotal,total,status,paymentMethod,itemCount,voidedItemCount
-tx_1776155168416_ljay27,2026-04-14T08:26:08.416Z,u_001,Sam Staff,17.98,17.98,finalised,card,2,1
-tx_1776156974480_wrkpq6,2026-04-14T08:56:14.480Z,u_001,Sam Staff,8.99,8.99,finalised,cash,1,0
-tx_1776156993694_qkuvbg,2026-04-14T08:56:33.694Z,u_001,Sam Staff,17.98,17.98,finalised,cash,2,1
-tx_1776157021041_jzys5y,2026-04-14T08:57:01.042Z,u_001,Sam Staff,9.5,9.5,finalised,cash,1,0
-tx_1776674422955_hix9ta,2026-04-20T08:40:22.955Z,u_003,Alex Clerk,17.98,17.98,finalised,cash,2,0
+id,timestamp,staffId,staffName,subtotal,total,status,paymentMethod,itemCount,voidedItemCount,type,tendered,change,idempotencyKey,refundOfId
+tx_1776155168416_ljay27,2026-04-14T08:26:08.416Z,u_001,Sam Staff,17.98,17.98,finalised,card,2,1,sale,0,0,,
+tx_1776156974480_wrkpq6,2026-04-14T08:56:14.480Z,u_001,Sam Staff,8.99,8.99,finalised,cash,1,0,sale,0,0,,
+tx_1776156993694_qkuvbg,2026-04-14T08:56:33.694Z,u_001,Sam Staff,17.98,17.98,finalised,cash,2,1,sale,0,0,,
+tx_1776157021041_jzys5y,2026-04-14T08:57:01.042Z,u_001,Sam Staff,9.5,9.5,finalised,cash,1,0,sale,0,0,,
+tx_1776674422955_hix9ta,2026-04-20T08:40:22.955Z,u_003,Alex Clerk,17.98,17.98,finalised,cash,2,0,sale,0,0,,
+tx_1776692597181_bjdfgn,2026-04-20T13:43:17.181Z,u_001,Sam Staff,4500,4500,finalised,card,1,1,sale,4500,0,idem_1776692577657_rjh96691,

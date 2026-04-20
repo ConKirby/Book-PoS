@@ -292,7 +292,7 @@ export default function PosPage() {
                       <div className="flex-1 min-w-0">
                         <p className="font-medium truncate">{item.title}</p>
                         <p className="text-xs text-slate-500">
-                          {item.isbn} · <span className="capitalize">{item.category.replace('-', ' ')}</span> · £
+                          {item.isbn} · <span className="capitalize">{item.category.replace('-', ' ')}</span> · €
                           {item.unitPrice.toFixed(2)}
                         </p>
                       </div>
@@ -312,7 +312,7 @@ export default function PosPage() {
                             +
                           </button>
                           <span className="w-20 text-right font-medium">
-                            £{(item.unitPrice * item.qty).toFixed(2)}
+                            €{(item.unitPrice * item.qty).toFixed(2)}
                           </span>
                           <button onClick={() => voidItem(idx)} className="text-red-600 text-xs ml-2">
                             Void
@@ -350,23 +350,23 @@ export default function PosPage() {
                     <span className="truncate">
                       {i.title} × {i.qty}
                     </span>
-                    <span>£{(i.unitPrice * i.qty).toFixed(2)}</span>
+                    <span>€{(i.unitPrice * i.qty).toFixed(2)}</span>
                   </li>
                 ))}
               </ul>
               <div className="border-t pt-2 flex justify-between font-bold text-lg">
                 <span>Total</span>
-                <span>£{lastReceipt.total.toFixed(2)}</span>
+                <span>€{lastReceipt.total.toFixed(2)}</span>
               </div>
               {lastReceipt.paymentMethod === 'cash' && (
                 <>
                   <div className="flex justify-between text-sm mt-1">
                     <span>Tendered</span>
-                    <span>£{lastReceipt.tendered.toFixed(2)}</span>
+                    <span>€{lastReceipt.tendered.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm font-medium">
                     <span>Change</span>
-                    <span>£{lastReceipt.change.toFixed(2)}</span>
+                    <span>€{lastReceipt.change.toFixed(2)}</span>
                   </div>
                 </>
               )}
@@ -396,7 +396,7 @@ export default function PosPage() {
               </div>
               <div className="flex justify-between text-2xl font-bold mb-4">
                 <span>Total</span>
-                <span>£{total.toFixed(2)}</span>
+                <span>€{total.toFixed(2)}</span>
               </div>
               <label className="text-sm block mb-1 font-medium">Payment</label>
               <select
@@ -422,7 +422,7 @@ export default function PosPage() {
                   <div className="flex justify-between text-sm mt-2">
                     <span>Change</span>
                     <span className={tenderedValid ? 'font-medium' : 'text-slate-400'}>
-                      £{tenderedValid ? change.toFixed(2) : '—'}
+                      €{tenderedValid ? change.toFixed(2) : '—'}
                     </span>
                   </div>
                   {tenderedInput && !tenderedValid && (
@@ -603,7 +603,7 @@ function RefundPanel({
                   <div className="flex-1 min-w-0">
                     <p className="font-medium truncate">{it.title}</p>
                     <p className="text-xs text-slate-500">
-                      Sold: {it.qty} · £{it.unitPrice.toFixed(2)}
+                      Sold: {it.qty} · €{it.unitPrice.toFixed(2)}
                     </p>
                   </div>
                   <button
